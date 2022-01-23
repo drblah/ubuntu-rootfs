@@ -81,9 +81,6 @@ EOF
 	pacman -S --noconfirm wget
 	pacman -S --noconfirm libftdi
 
-	# firmware
-	pacman -S --noconfirm linux-firmware
-
 	# mmc utils for setting partconf
 	# TODO: Is this needed?
 	#apt install -y mmc-utils
