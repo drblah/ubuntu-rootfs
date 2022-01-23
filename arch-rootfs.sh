@@ -463,6 +463,7 @@ required sfdisk
 name=${DIST}-${FAMILY}
 outdir=$name
 echo "Creating ${outdir}..."
+mkdir $outdir
 
 # first stage
 wget http://os.archlinuxarm.org/os/ArchLinuxARM-aarch64-latest.tar.gz
