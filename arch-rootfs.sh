@@ -550,7 +550,7 @@ sed -i 's/^#CheckSpace/CheckSpace/' $outdir/etc/pacman.conf
 	${family}_kernel $outdir
 
 	# disk image and ext4 fs
-	blkdev_image $outdir ext4 1536
+	blkdev_image $outdir ext4 2304
 
 	# ubi filesystems
 	[ "$family" = "ventana" ] && {
