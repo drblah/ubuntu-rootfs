@@ -466,7 +466,7 @@ echo "Creating ${outdir}..."
 
 # first stage
 wget http://os.archlinuxarm.org/os/ArchLinuxARM-aarch64-latest.tar.gz
-bsdtar -xpf ArchLinuxARM-aarch64-latest.tar.gz -C $outdir
+tar -xpf ArchLinuxARM-aarch64-latest.tar.gz -C $outdir
 
 # install qemu to rootfs
 case "$ARCH" in
