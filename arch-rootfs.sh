@@ -518,6 +518,9 @@ chroot $outdir /bin/bash -c "second_stage"
 
 # cleanup
 
+# Ensure all processes from the chroot are terminated before unmounting
+killall -SIGKILL qemu-aarch64-static
+
 umount $outdir/proc
 umount $outdir/sys
 umount $outdir/dev
