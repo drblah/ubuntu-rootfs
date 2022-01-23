@@ -444,7 +444,7 @@ case "$FAMILY" in
 	*) usage;;
 esac
 case "$DIST" in
-	focal|eoan|bionic|xenial|trusty);;
+	arch);;
 	*) usage;;
 esac
 
