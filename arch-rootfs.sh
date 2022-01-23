@@ -51,7 +51,7 @@ EOF
 
 	pacman-key --init
 	pacman-key --populate archlinuxarm
-	pacman -Syyu
+	pacman -Syyu --noconfirm
 
 	# Set Hostname
 	echo "${distro}-${family}" > /etc/hostname
