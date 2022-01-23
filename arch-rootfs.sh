@@ -504,10 +504,34 @@ export packages=$PACKAGES
 export WGET=$WGET
 
 # second stage
+# Setup chroot
+mount -t proc /proc $outdir/proc
+mount -o bind /sys $outdir/sys
+mount -o bind /dev $outdir/dev
+
+# Temprarily move resolv symlink and mountbind host resolv
+mv $outdir/etc/resolv.conf $outdir/etc/resolv.conf.bak
+touch $outdir/etc/resolv.conf
+mount -o bind /etc/resolv.conf $outdir/etc/resolv.conf
+
+# Disable pacman CheckSpace while in chroot
+sed -i 's/^CheckSpace/#CheckSpace/' $outdir/etc/pacman.conf
+
 chroot $outdir /bin/bash -c "second_stage"
 
 # cleanup
+
+umount $outdir/proc
+umount $outdir/sys
+umount $outdir/dev
+umount $outdir/etc/resolv.conf
+
 rm $outdir/usr/bin/qemu-*-static # remove qemu
+# Restore resolv.conf symlink
+mv $outdir/etc/resolv.conf.bak $outdir/etc/resolv.conf
+
+# Re-enable pacman CheckSpace
+sed -i 's/^#CheckSpace/CheckSpace/' $outdir/etc/pacman.conf
 
 # create package manifest (name/ver) and package list (name)
 # TODO: Port this to pacman
